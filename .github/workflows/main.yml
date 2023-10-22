@@ -1,0 +1,25 @@
+name: Python Lint
+
+on:
+  push:
+    branches:
+      - main  # Replace 'main' with your repository's default branch
+
+jobs:
+  lint:
+    name: Run pycodestyle
+    runs-on: ubuntu-latest  # You can change the runner as needed
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.12  # Change to your desired Python version
+
+    - name: Install dependencies
+      run: pip install pycodestyle
+
+    - name: Run pycodestyle
+      run: pycodestyle exercise_1
