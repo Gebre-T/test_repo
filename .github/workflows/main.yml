@@ -21,5 +21,3 @@ jobs:
     - name: Install dependencies
       run: pip install pycodestyle
 
-    - name: Run pycodestyle 
-      run: https://github.com/Gebre-T/test_repo/blob/main/passtest.py
