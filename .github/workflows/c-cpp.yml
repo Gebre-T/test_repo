@@ -1,0 +1,38 @@
+name: C++ Build and Run
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up CMake
+      run: sudo apt-get install -y cmake
+
+    - name: Build C++ program
+      run: |
+        g++ sum.cpp -o sum
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: sum
+
+  run:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: my-artifact
+
+    - name: Run program
+      run: |
+        ./sum <<< "1 2 3 4 5 0"  # Change this input as needed
